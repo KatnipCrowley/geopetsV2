@@ -1,22 +1,17 @@
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Principal from './pages/Principal'
+import Notificaciones from './pages/notificaciones'
 import './App.css'
-import './mapa.css'
-import Header from './components/header'
-import MapContainer from './components/MapContainer'
-import Sidebar from './components/Sidebar'
-import Footer from './components/Footer'
 
 function App() {
   return (
-    <div className="container">
-      <Header subtitle="" />
-
-      <div className="app-container">
-        <MapContainer />
-        <Sidebar />
-      </div>
-
-      <Footer />
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<Principal />} />  
+      <Route path='/principal' element={<Principal />} />  
+      <Route path='/notificaciones' element={<Notificaciones />} />  
+    </Routes>
+    </BrowserRouter>
   )
 }
 

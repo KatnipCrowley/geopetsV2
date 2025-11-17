@@ -1,16 +1,24 @@
-interface HeaderProps {
+import './header.css';
+
+interface headeroptions {
   title?: string;
-  subtitle?: string;
 }
 
-export default function Header({ 
-    title = "Mapa Interactivo", 
-    subtitle = "OpenStreetMap + Firebase" 
-}: HeaderProps) {
-    return (
-        <header>
-            <h1>{title}</h1>
-            {subtitle && <p className="subtitle">{subtitle}</p>}
-        </header>
-    );
+const MiVariable = 42;
+
+export default function Header({title}: headeroptions) {
+  return (
+    <>
+      <header className="custom-header">
+        <h1>{title}</h1>
+      </header>
+
+      <br />
+
+      <h1>Hola</h1>
+      <p>Este es un párrafo adicional.</p>
+      {MiVariable}
+      <div className="div_1">Otro div</div>
+    </>
+  );
 }

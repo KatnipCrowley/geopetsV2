@@ -46,7 +46,7 @@ export default function MapContainer() {
   return (
     <div className="map-container">
       <LeafletMapContainer
-        center={[19.4326, -99.1332]}
+        center={[19.4326, -99.1332]} /* Ciudad de México */
         zoom={13}
         style={{ height: '100%', width: '100%' }}
       >
