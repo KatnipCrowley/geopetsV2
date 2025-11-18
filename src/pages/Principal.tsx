@@ -1,11 +1,13 @@
 // Página Principal (/principal)
 // Aquí puedes programar lo que quieras
-import Header from '../components/header'
+import FooterButtons from '../components/Footer';
+import MapComponent from '../components/Mapa';
 
 export default function Principal() {
   return (
-    <div>
-      <Header title='Geopetardos'></Header>
-    </div>
+    <>
+      <MapComponent />
+      <FooterButtons />
+    </>
   );
 }

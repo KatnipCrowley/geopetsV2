@@ -3,12 +3,14 @@
 
 import NotificacionesHeader from "../components/NotificacionesHeader";
 import NotificacionesList from "../components/NotificacionesList";
+import FooterButtons from "../components/Footer";
 
 export default function Notificaciones() {
   return (
     <>
       <NotificacionesHeader />
       <NotificacionesList />
+      <FooterButtons />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Principal from './pages/Principal'
 import Notificaciones from './pages/notificaciones'
+import Principal from './pages/Principal'
+import Feed from './pages/feed';
 import './App.css'
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Principal />} />  
       <Route path='/principal' element={<Principal />} />  
+      <Route path='/feed' element={<Feed />} />
       <Route path='/notificaciones' element={<Notificaciones />} />  
     </Routes>
     </BrowserRouter>

@@ -16,7 +16,7 @@ export default function Notificacion({ name, date, text, avatar, readed }: Notif
         {
           avatar ?
           <img src={avatar} alt={`${name}'s avatar`} /> :
-          <div className="placeholder-avatar" />
+          <img src={`https://picsum.dev/static/${Math.floor(Math.random() * 100)}/64/64`} alt="Default avatar" />
         }
       </div>
       <div className="notif-content">
