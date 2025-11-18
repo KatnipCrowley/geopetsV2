@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HeaderTitle from '../components/header';
 import FooterButtons from '../components/Footer';
+import MapaPicker from '../components/MapaPicker';
 import './../components/NuevaPublicacion.css';
 
 export default function NuevaPublicacion() {
@@ -9,6 +10,7 @@ export default function NuevaPublicacion() {
   const [content, setContent] = useState('');
   const [hasLocation, setHasLocation] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState<[number, number] | null>(null);
+  const [showMapPicker, setShowMapPicker] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,9 +38,24 @@ export default function NuevaPublicacion() {
   };
 
   const handleAddLocation = () => {
-    // Simular selección de ubicación
-    setSelectedLocation([-33.5110, -70.7580]); // Coordenadas de ejemplo
+    setShowMapPicker(true);
+  };
+
+  const handleLocationSelect = (lat: number, lng: number) => {
+    setSelectedLocation([lat, lng]);
     setHasLocation(true);
+  };
+
+  const handleConfirmLocation = () => {
+    if (selectedLocation) {
+      setShowMapPicker(false);
+    }
+  };
+
+  const handleCancelLocation = () => {
+    setShowMapPicker(false);
+    setSelectedLocation(null);
+    setHasLocation(false);
   };
 
   const handleRemoveLocation = () => {
@@ -83,7 +100,44 @@ export default function NuevaPublicacion() {
             </div>
           </div>
 
-          {hasLocation && selectedLocation && (
+          {showMapPicker && (
+            <div className="map-picker-section">
+              <h3 className="map-picker-title">
+                📍 Selecciona una ubicación en el mapa
+              </h3>
+              <p className="map-picker-instruction">
+                Haz clic en el mapa para seleccionar la ubicación exacta
+              </p>
+              <MapaPicker 
+                selectedLocation={selectedLocation}
+                onLocationSelect={handleLocationSelect}
+              />
+              {selectedLocation && (
+                <div className="selected-coords">
+                  📍 Coordenadas: {selectedLocation[0].toFixed(4)}, {selectedLocation[1].toFixed(4)}
+                </div>
+              )}
+              <div className="map-picker-actions">
+                <button 
+                  type="button" 
+                  className="cancel-map-btn"
+                  onClick={handleCancelLocation}
+                >
+                  Cancelar
+                </button>
+                <button 
+                  type="button" 
+                  className="confirm-map-btn"
+                  onClick={handleConfirmLocation}
+                  disabled={!selectedLocation}
+                >
+                  Confirmar ubicación
+                </button>
+              </div>
+            </div>
+          )}
+
+          {hasLocation && selectedLocation && !showMapPicker && (
             <div className="location-preview">
               <div className="location-preview-header">
                 <span className="location-icon">📍</span>
@@ -107,7 +161,7 @@ export default function NuevaPublicacion() {
                 type="button" 
                 className="option-button"
                 onClick={handleAddLocation}
-                disabled={hasLocation}
+                disabled={hasLocation || showMapPicker}
               >
                 📍 {hasLocation ? 'Ubicación agregada' : 'Agregar ubicación'}
               </button>

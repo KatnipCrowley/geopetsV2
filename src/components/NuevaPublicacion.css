@@ -74,6 +74,84 @@
   padding-right: 4px;
 }
 
+.map-picker-section {
+  margin-bottom: 20px;
+  padding: 16px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.map-picker-title {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.map-picker-instruction {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.selected-coords {
+  margin-top: 12px;
+  padding: 10px;
+  background-color: #e3f2fd;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+.map-picker-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.cancel-map-btn {
+  flex: 1;
+  padding: 12px;
+  background-color: #fff;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.cancel-map-btn:hover {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+}
+
+.confirm-map-btn {
+  flex: 1;
+  padding: 12px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: inherit;
+}
+
+.confirm-map-btn:hover:not(:disabled) {
+  background-color: #0052a3;
+}
+
+.confirm-map-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
 .location-preview {
   background-color: #e8f4fc;
   border-radius: 8px;
