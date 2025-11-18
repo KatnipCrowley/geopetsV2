@@ -1,14 +1,14 @@
 // Página Notificaciones (/Notificaciones)
 // Aquí puedes programar lo que quieras
 
-import NotificacionesHeader from "../components/NotificacionesHeader";
 import NotificacionesList from "../components/NotificacionesList";
 import FooterButtons from "../components/Footer";
+import HeaderTitle from "../components/header";
 
 export default function Notificaciones() {
   return (
     <>
-      <NotificacionesHeader />
+      <HeaderTitle title="Notificaciones" />
       <NotificacionesList />
       <FooterButtons />
     </>

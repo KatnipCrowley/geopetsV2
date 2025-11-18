@@ -11,6 +11,10 @@ interface MapContextType {
   map: LeafletMap | null;
   setMap: (map: LeafletMap | null) => void;
   focusLocation: (location: Location) => void;
+  mapCenter: [number, number];
+  setMapCenter: (center: [number, number]) => void;
+  mapZoom: number;
+  setMapZoom: (zoom: number) => void;
 }
 
 const MapContext = createContext<MapContextType | undefined>(undefined);
@@ -19,6 +23,9 @@ export function MapProvider({ children }: { children: ReactNode }) {
   const [selectedLatLng, setSelectedLatLng] = useState<LatLng | null>(null);
   const [locations, setLocations] = useState<Location[]>([]);
   const [map, setMap] = useState<LeafletMap | null>(null);
+  // Estado persistente del mapa: coordenadas de Maipú por defecto
+  const [mapCenter, setMapCenter] = useState<[number, number]>([-33.5110, -70.7580]);
+  const [mapZoom, setMapZoom] = useState<number>(13);
 
   const focusLocation = (location: Location) => {
     if (map) {
@@ -36,6 +43,10 @@ export function MapProvider({ children }: { children: ReactNode }) {
         map,
         setMap,
         focusLocation,
+        mapCenter,
+        setMapCenter,
+        mapZoom,
+        setMapZoom,
       }}
     >
       {children}

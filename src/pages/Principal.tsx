@@ -5,9 +5,9 @@ import MapComponent from '../components/Mapa';
 
 export default function Principal() {
   return (
-    <>
+    <div style={{ paddingBottom: '60px' }}>
       <MapComponent />
       <FooterButtons />
-    </>
+    </div>
   );
 }
