@@ -15,8 +15,17 @@ export default function Post({ author, action, date, likes, comments, location, 
   return (
     <div className="post-container">
       <div className="post-header">
-        <h3>{author}</h3>
-        <p>{action} - {date}</p>
+        <div className="post-header-left">
+          <div className="post-avatar">
+            <img src={`https://picsum.dev/static/${Math.floor(Math.random() * 100)}/64/64`} alt={author} />
+          </div>
+          <div className="post-author-info">
+            <b>{author}</b> {action}
+          </div>
+        </div>
+        <div className="post-header-date">
+          {date}
+        </div>
       </div>
       <div className="post-content">
         {location && <MiniMapa position={location} />}

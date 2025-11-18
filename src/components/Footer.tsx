@@ -6,6 +6,11 @@ export default function FooterButtons() {
     <div className="footer-buttons-container">
       <div className="footer-button"><Link to="/">Inicio</Link></div>
       <div className="footer-button"><Link to="/feed">Feed</Link></div>
+      <button className="footer-create-button">
+        <span className="plus-icon">
+          <Link to="/nueva-publicacion" className="plus-icon-text">+</Link>
+        </span>
+      </button>
       <div className="footer-button"><Link to="/notificaciones">Notificaciones</Link></div>
       <div className="footer-button"><Link to="/mensajes">Mensajes</Link></div>
     </div>

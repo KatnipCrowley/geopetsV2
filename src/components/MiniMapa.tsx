@@ -21,7 +21,7 @@ interface MiniMapaProps {
 
 export default function MiniMapa({ position }: MiniMapaProps) {
   return (
-    <div style={{ width: '100%', aspectRatio: '1/1', marginBottom: '10px' }}>
+    <div style={{ width: '100%', aspectRatio: '10/7', marginBottom: '10px' }}>
       <MapContainer
         center={position}
         zoom={18}
