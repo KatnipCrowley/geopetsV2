@@ -4,6 +4,7 @@ import L from 'leaflet'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useMap } from '../context/MapContext'
+import type { Aviso } from '../types/aviso'
 
 // Fix para los iconos de Leaflet en React
 import icon from 'leaflet/dist/images/marker-icon.png'
@@ -46,9 +47,33 @@ export default function MapComponent() {
   const { mapCenter, mapZoom, selectedLatLng } = useMap();
   const navigate = useNavigate();
   const [showButton, setShowButton] = useState(false);
+  const [avisos, setAvisos] = useState<Aviso[]>([]);
   
   // Coordenadas fijas del marcador inicial de Maipú
   const markerPosition: [number, number] = [-33.5110, -70.7580];
+
+  // Cargar avisos del localStorage
+  useEffect(() => {
+    const cargarAvisos = () => {
+      const avisosGuardados = localStorage.getItem('avisos');
+      if (avisosGuardados) {
+        setAvisos(JSON.parse(avisosGuardados));
+      }
+    };
+
+    cargarAvisos();
+
+    // Listener para actualizar cuando se creen nuevos avisos
+    const handleAvisosUpdate = () => {
+      cargarAvisos();
+    };
+
+    window.addEventListener('avisosUpdate', handleAvisosUpdate);
+    
+    return () => {
+      window.removeEventListener('avisosUpdate', handleAvisosUpdate);
+    };
+  }, []);
 
   useEffect(() => {
     setShowButton(selectedLatLng !== null);
@@ -56,6 +81,30 @@ export default function MapComponent() {
 
   const handleCreateNotice = () => {
     navigate('/nuevo-aviso');
+  };
+
+  const getTipoAvisoName = (tipo: string): string => {
+    const tipos: Record<string, string> = {
+      'mascota-perdida': 'Mascota perdida',
+      'mascota-encontrada': 'Mascota encontrada',
+      'adopcion': 'En adopción',
+      'alerta': 'Alerta de seguridad',
+      'servicio': 'Servicio veterinario',
+      'otro': 'Otro'
+    };
+    return tipos[tipo] || 'Otro';
+  };
+
+  const getTipoAvisoIcon = (tipo: string): string => {
+    const iconos: Record<string, string> = {
+      'mascota-perdida': '🐾',
+      'mascota-encontrada': '🏠',
+      'adopcion': '❤️',
+      'alerta': '⚠️',
+      'servicio': '🏥',
+      'otro': '📌'
+    };
+    return iconos[tipo] || '📌';
   };
 
   return (
@@ -79,6 +128,34 @@ export default function MapComponent() {
             Maipú, Región Metropolitana <br /> Chile
           </Popup>
         </Marker>
+        
+        {/* Marcadores de avisos creados */}
+        {avisos.map((aviso) => (
+          <Marker 
+            key={aviso.id} 
+            position={[aviso.ubicacion.lat, aviso.ubicacion.lng]}
+          >
+            <Popup>
+              <div style={{ minWidth: '200px' }}>
+                <div style={{ fontWeight: 'bold', marginBottom: '8px', fontSize: '14px' }}>
+                  {getTipoAvisoIcon(aviso.tipoAviso)} {aviso.titulo}
+                </div>
+                <div style={{ fontSize: '12px', color: '#666', marginBottom: '4px' }}>
+                  {getTipoAvisoName(aviso.tipoAviso)}
+                </div>
+                <div style={{ fontSize: '11px', color: '#999' }}>
+                  {new Date(aviso.fecha).toLocaleDateString('es-ES', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
+                </div>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
         
         {selectedLatLng && (
           <Marker position={[selectedLatLng.lat, selectedLatLng.lng]}>

@@ -21,6 +21,7 @@ export default function NuevoAviso() {
     }
 
     const nuevoAviso = {
+      id: Date.now().toString(),
       titulo,
       tipoAviso,
       ubicacion: selectedLatLng,
@@ -29,20 +30,48 @@ export default function NuevoAviso() {
 
     console.log('Nuevo aviso creado:', nuevoAviso);
     
-    // Aquí puedes guardar el aviso en localStorage o Firebase
+    // Guardar el aviso en localStorage
     const avisos = JSON.parse(localStorage.getItem('avisos') || '[]');
     avisos.unshift(nuevoAviso);
     localStorage.setItem('avisos', JSON.stringify(avisos));
 
+    // Crear notificación
+    const notificaciones = JSON.parse(localStorage.getItem('notificaciones') || '[]');
+    const nuevaNotificacion = {
+      id: Date.now().toString(),
+      name: 'Sistema de Avisos',
+      date: 'Ahora',
+      text: `Nuevo aviso: ${titulo} - ${getTipoAvisoName(tipoAviso)}`,
+      readed: false,
+      avatar: '',
+    };
+    notificaciones.unshift(nuevaNotificacion);
+    localStorage.setItem('notificaciones', JSON.stringify(notificaciones));
+
+    window.dispatchEvent(new Event('notificacionesUpdate'));
+    window.dispatchEvent(new Event('avisosUpdate'));
+
     // Limpiar el estado y redirigir
     setSelectedLatLng(null);
     alert('Aviso creado exitosamente');
-    navigate('/');
+    navigate('/principal');
+  };
+
+  const getTipoAvisoName = (tipo: string): string => {
+    const tipos: Record<string, string> = {
+      'mascota-perdida': 'Mascota perdida',
+      'mascota-encontrada': 'Mascota encontrada',
+      'adopcion': 'En adopción',
+      'alerta': 'Alerta de seguridad',
+      'servicio': 'Servicio veterinario',
+      'otro': 'Otro'
+    };
+    return tipos[tipo] || 'Otro';
   };
 
   const handleCancel = () => {
     setSelectedLatLng(null);
-    navigate('/');
+    navigate('/principal');
   };
 
   return (

@@ -6,12 +6,14 @@ import Feed from './pages/feed';
 import NuevaPublicacion from './pages/NuevaPublicacion';
 import NuevoAviso from './pages/NuevoAviso';
 import { MapProvider } from './context/MapContext';
+import ToastNotification from './components/ToastNotification';
 import './App.css'
 
 function App() {
   return (
     <MapProvider>
       <BrowserRouter>
+        <ToastNotification />
         <Routes>
           <Route path='/' element={<PantallaInicio />} />  
           <Route path='/principal' element={<Principal />} />  
