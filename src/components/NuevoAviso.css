@@ -1,0 +1,102 @@
+.nuevo-aviso-container {
+  padding: 80px 16px 80px;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.nuevo-aviso-form {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.aviso-form-group {
+  margin-bottom: 20px;
+}
+
+.aviso-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #1a1a1a;
+}
+
+.aviso-form-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.aviso-form-input:focus {
+  outline: none;
+  border-color: #0066cc;
+}
+
+.aviso-form-select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  background-color: white;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.aviso-form-select:focus {
+  outline: none;
+  border-color: #0066cc;
+}
+
+.aviso-location-display {
+  background-color: #e8f4fc;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  color: #1a1a1a;
+}
+
+.aviso-location-icon {
+  margin-right: 8px;
+}
+
+.aviso-submit-button {
+  width: 100%;
+  padding: 14px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: inherit;
+  margin-top: 20px;
+}
+
+.aviso-submit-button:hover:not(:disabled) {
+  background-color: #0052a3;
+}
+
+.aviso-submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .nuevo-aviso-container {
+    padding: 70px 12px 80px;
+  }
+}
