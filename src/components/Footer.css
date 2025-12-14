@@ -8,57 +8,81 @@
   align-items: center;
   background-color: #ffffff;
   border-top: 1px solid #e0e0e0;
-  padding: 12px 0;
+  padding: 8px 0;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-}
-
-.footer-button {
-  flex: 1;
-  text-align: center;
-}
-
-.footer-button a {
-  text-decoration: none;
-  color: #333333;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 8px 16px;
-  display: inline-block;
-}
-
-.footer-create-button {
-  width: 56px;
   height: 56px;
-  border-radius: 50%;
-  background: #000000;
-  border: none;
-  cursor: pointer;
+}
+
+/* Botones de navegación */
+.footer-nav-button {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
+  text-decoration: none;
+  color: #666666;
+  transition: color 0.2s ease;
   position: relative;
-  bottom: 20px;
 }
 
-.footer-create-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+.footer-nav-button:hover {
+  color: #333333;
 }
 
-.footer-create-button:active {
-  transform: scale(0.95);
+.footer-nav-button.active {
+  color: #000000;
 }
 
-.plus-icon {
+/* Iconos SVG */
+.footer-icon {
+  width: 28px;
+  height: 28px;
+  transition: all 0.2s ease;
+}
+
+
+
+/* Contenedor de notificaciones */
+.notification-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Badge de notificaciones */
+.notification-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background-color: #ff3b30;
   color: #ffffff;
-  font-size: 32px;
-  font-weight: 300;
-  line-height: 1;
+  border-radius: 10px;
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(255, 59, 48, 0.3);
 }
 
-.plus-icon-text {
-  color: white;
+/* Imagen de perfil */
+.footer-profile-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.footer-profile-img.active {
+  border-color: #000000;
+  border-width: 2.5px;
+}
+
+.footer-profile-img:hover {
+  border-color: #666666;
 }

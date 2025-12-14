@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 /**
@@ -11,13 +11,26 @@ import { useNavigate } from "react-router-dom";
 
 export default function PantallaInicio() {
     const navigate = useNavigate();
-    const [dontShowAgain, setDontShowAgain] = useState<boolean>(() => {
+
+    // Verificar si debemos saltar la intro de forma síncrona para evitar parpadeos
+    const [shouldSkip] = useState(() => {
         try {
             return localStorage.getItem("geopets_skip_intro") === "true";
         } catch {
             return false;
         }
     });
+
+    useEffect(() => {
+        if (shouldSkip) {
+            navigate("/principal");
+        }
+    }, [shouldSkip, navigate]);
+
+    const [dontShowAgain, setDontShowAgain] = useState<boolean>(shouldSkip);
+
+    // Si vamos a redirigir, no renderizamos nada
+    if (shouldSkip) return null;
 
     function handleContinue() {
         try {

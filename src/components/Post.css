@@ -1,28 +1,33 @@
 .post-container {
-  width: 82%;
+  width: 100%;
+  max-width: 600px;
   background-color: #ffffff;
-  margin-bottom: calc(1px - 2px);
-  border-top: 1px solid #c6c0c0;
-  border-bottom: 1px solid #c6c0c0;
-  align-content: center;
+  margin-bottom: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
+/* Header del post */
 .post-header {
-  padding: 16px 20px;
+  padding: 12px 16px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-}
-
-.post-header-left {
-  display: flex;
-  align-items: center;
   gap: 12px;
 }
 
+.post-header-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+}
+
 .post-avatar {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: #e5e5e5;
   overflow: hidden;
@@ -35,49 +40,137 @@
   object-fit: cover;
 }
 
-.post-author-info h3 {
-  margin: 0;
-  font-size: 16px;
+.post-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  align-items: flex-start;
+}
+
+.post-author-name {
+  font-size: 14px;
+  color: #1a1a1a;
+  line-height: 1.4;
+}
+
+.post-author-name strong {
   font-weight: 600;
+}
+
+.post-date {
+  font-size: 12px;
+  color: #666666;
+}
+
+/* Botón de menú (tres puntos) */
+.post-menu-button {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #666666;
+  transition: color 0.2s, background-color 0.2s;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-menu-button:hover {
+  background-color: #f5f5f5;
   color: #1a1a1a;
 }
 
-.post-author-info p {
-  margin: 0;
-  font-size: 13px;
-  color: #666666;
+.post-menu-icon {
+  width: 20px;
+  height: 20px;
 }
 
-.post-header-date {
-  font-size: 13px;
-  color: #666666;
+/* Mapa del post */
+.post-map {
+  width: 100%;
+  height: 250px;
+  background-color: #f0f0f0;
+  overflow: hidden;
 }
 
+/* Contenido del post */
 .post-content {
-  padding: 0 1px 0 20px;
-}
-
-.post-footer {
-  padding: 8px 20px;
-  display: flex;
-  gap: 24px;
+  padding: 12px 16px;
   font-size: 14px;
-  color: #666666;
+  color: #1a1a1a;
+  line-height: 1.5;
+  text-align: left;
 }
 
-.post-footer span {
+/* Footer: Likes y Comentarios */
+.post-footer {
+  padding: 8px 16px 12px;
+  display: flex;
+  gap: 20px;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 8px;
+}
+
+.post-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   cursor: pointer;
   transition: color 0.2s;
+  color: #666666;
+  font-size: 13px;
 }
 
-.post-footer span:hover {
+.post-stat:hover {
   color: #1a1a1a;
 }
 
+.post-icon {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.5;
+}
+
+/* Container de la lista de posts */
 .posts-list {
   padding-bottom: 80px;
-  padding-top: 80px;
+  padding-top: 56px;
+  padding-left: 8px;
+  padding-right: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 640px) {
+  .posts-list {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .post-container {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .post-header {
+    padding: 10px 12px;
+  }
+
+  .post-content {
+    padding: 10px 12px;
+  }
+
+  .post-footer {
+    padding: 6px 12px 10px;
+  }
 }

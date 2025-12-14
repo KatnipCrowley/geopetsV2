@@ -1,8 +1,8 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Notificaciones from './pages/notificaciones'
-import Principal from './pages/Principal'
-import PantallaInicio from './pages/pantallaInicio'
-import Feed from './pages/feed';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Notificaciones from './pages/Notificaciones'
+import Mapa from './pages/Mapa'
+import PantallaInicio from './pages/PantallaInicio'
+import Feed from './pages/Feed';
 import NuevaPublicacion from './pages/NuevaPublicacion';
 import NuevoAviso from './pages/NuevoAviso';
 import { MapProvider } from './context/MapContext';
@@ -15,10 +15,10 @@ function App() {
       <BrowserRouter>
         <ToastNotification />
         <Routes>
-          <Route path='/' element={<PantallaInicio />} />  
-          <Route path='/principal' element={<Principal />} />  
-          <Route path='/feed' element={<Feed />} />
-          <Route path='/notificaciones' element={<Notificaciones />} />  
+          <Route path='/' element={<PantallaInicio />} />
+          <Route path='/principal' element={<Feed />} />
+          <Route path='/mapa' element={<Mapa />} />
+          <Route path='/notificaciones' element={<Notificaciones />} />
           <Route path='/nueva-publicacion' element={<NuevaPublicacion />} />
           <Route path='/nuevo-aviso' element={<NuevoAviso />} />
         </Routes>

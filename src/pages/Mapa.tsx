@@ -3,7 +3,7 @@
 import FooterButtons from '../components/Footer';
 import MapComponent from '../components/Mapa';
 
-export default function Principal() {
+export default function Mapa() {
   return (
     <div style={{ paddingBottom: '60px' }}>
       <MapComponent />

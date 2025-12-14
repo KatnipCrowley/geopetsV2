@@ -6,14 +6,40 @@ interface NotificacionData {
   name: string;
   date: string;
   text: string;
+  type: 'follower' | 'alert' | 'comment';
   avatar?: string;
   readed?: boolean;
+  commentText?: string;
+  imageUrl?: string;
 }
 
 const notificacionesPorDefecto: NotificacionData[] = [
-  { id: '1', name: 'Testing', date: 'Hace 1 dia', text: 'Esta es una notificación de prueba', readed: true },
-  { id: '2', name: 'Cristian Ghost', date: 'Hace 1 dia', text: 'Ha visto tu perfil', readed: true },
-  { id: '3', name: 'Admin', date: 'Hace 2 dias', text: 'Bienvenido a la plataforma', readed: true },
+  {
+    id: '1',
+    type: 'follower',
+    name: 'Carlos Mendez',
+    date: 'Hace 1 hora',
+    text: 'Comenzó a seguirte',
+    readed: false
+  },
+  {
+    id: '2',
+    type: 'alert',
+    name: 'Sistema',
+    date: 'Hace 3 horas',
+    text: 'Alguien ha visto tu mascota',
+    readed: false
+  },
+  {
+    id: '3',
+    type: 'comment',
+    name: 'Ana García',
+    date: 'Hace 1 día',
+    text: 'Hizo un comentario',
+    commentText: '¡Qué linda mascota! Me encanta 🐶',
+    imageUrl: 'https://picsum.photos/60/60?random=1',
+    readed: true
+  },
 ];
 
 export default function NotificacionesList() {
@@ -50,11 +76,14 @@ export default function NotificacionesList() {
       {notificaciones.map((notificacion) => (
         <Notificacion
           key={notificacion.id}
+          type={notificacion.type}
           name={notificacion.name}
           date={notificacion.date}
           text={notificacion.text}
           avatar={notificacion.avatar}
           readed={notificacion.readed}
+          commentText={notificacion.commentText}
+          imageUrl={notificacion.imageUrl}
         />
       ))}
     </div>

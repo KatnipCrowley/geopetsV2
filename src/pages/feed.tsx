@@ -7,7 +7,7 @@ import PostList from "../components/PostList";
 export default function Feed() {
   return (
     <>
-      <HeaderTitle title="Para ti" />
+      <HeaderTitle />
       <PostList />
       <FooterButtons />
     </>

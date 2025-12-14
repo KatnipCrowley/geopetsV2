@@ -1,4 +1,5 @@
 import MiniMapa from './MiniMapa';
+import { HeartIcon, ChatBubbleLeftIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
 import './Post.css';
 
 interface PostOptions {
@@ -11,29 +12,51 @@ interface PostOptions {
   children: React.ReactNode;
 }
 
+const profileUrl = "https://picsum.dev/64?seed={seed}";
+
 export default function Post({ author, action, date, likes, comments, location, children }: PostOptions) {
   return (
     <div className="post-container">
+      {/* Header: Avatar, Nombre, Acción y Menú */}
       <div className="post-header">
-        <div className="post-header-left">
+        <div className="post-header-content">
           <div className="post-avatar">
-            <img src={`https://picsum.dev/static/${Math.floor(Math.random() * 100)}/64/64`} alt={author} />
+            <img src={profileUrl.replace("{seed}", author)} alt={author} />
           </div>
           <div className="post-author-info">
-            <b>{author}</b> {action}
+            <div className="post-author-name">
+              <strong>{author}</strong> {action}
+            </div>
+            <div className="post-date">{date}</div>
           </div>
         </div>
-        <div className="post-header-date">
-          {date}
-        </div>
+        <button className="post-menu-button" aria-label="Más opciones">
+          <EllipsisHorizontalIcon className="post-menu-icon" />
+        </button>
       </div>
+
+      {/* Mapa (si existe) */}
+      {location && (
+        <div className="post-map">
+          <MiniMapa position={location} />
+        </div>
+      )}
+
+      {/* Contenido del post */}
       <div className="post-content">
-        {location && <MiniMapa position={location} />}
         {children}
       </div>
+
+      {/* Footer: Likes y Comentarios */}
       <div className="post-footer">
-        <span>{likes} Likes</span>
-        <span>{comments} Comments</span>
+        <div className="post-stat">
+          <HeartIcon className="post-icon" />
+          <span>{likes} Me gusta</span>
+        </div>
+        <div className="post-stat">
+          <ChatBubbleLeftIcon className="post-icon" />
+          <span>{comments} Comentarios</span>
+        </div>
       </div>
     </div>
   );
