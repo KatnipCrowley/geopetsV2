@@ -1,6 +1,7 @@
 import MiniMapa from './MiniMapa';
 import { HeartIcon, ChatBubbleLeftIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
 import './Post.css';
+import { mockUser } from '../mockup';
 
 interface PostOptions {
   author: string;
@@ -15,13 +16,15 @@ interface PostOptions {
 const profileUrl = "https://picsum.dev/64?seed={seed}";
 
 export default function Post({ author, action, date, likes, comments, location, children }: PostOptions) {
+  let avatarUrl = author !== mockUser.username ? profileUrl.replace("{seed}", author) : mockUser.avatar;
+
   return (
     <div className="post-container">
       {/* Header: Avatar, Nombre, Acción y Menú */}
       <div className="post-header">
         <div className="post-header-content">
           <div className="post-avatar">
-            <img src={profileUrl.replace("{seed}", author)} alt={author} />
+            <img src={avatarUrl} alt={author} />
           </div>
           <div className="post-author-info">
             <div className="post-author-name">

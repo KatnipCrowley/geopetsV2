@@ -4,6 +4,7 @@ import HeaderTitle from '../components/header';
 import FooterButtons from '../components/Footer';
 import MapaPicker from '../components/MapaPicker';
 import './../components/NuevaPublicacion.css';
+import { mockUser } from '../mockup';
 
 export default function NuevaPublicacion() {
   const navigate = useNavigate();
@@ -14,10 +15,10 @@ export default function NuevaPublicacion() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Aquí iría la lógica para guardar el post en local storage
     const newPost = {
-      author: 'Usuario Actual', // Esto vendría del usuario logueado
+      author: mockUser.username,
       action: hasLocation ? 'compartió una ubicación' : 'publicó',
       date: 'Hace unos momentos',
       likes: 0,
@@ -27,14 +28,14 @@ export default function NuevaPublicacion() {
     };
 
     console.log('Nuevo post:', newPost);
-    
+
     // Guardar en localStorage
     const posts = JSON.parse(localStorage.getItem('posts') || '[]');
     posts.unshift(newPost);
     localStorage.setItem('posts', JSON.stringify(posts));
 
     // Redirigir al feed después de crear el post
-    navigate('/feed');
+    navigate('/principal');
   };
 
   const handleAddLocation = () => {
@@ -77,12 +78,12 @@ export default function NuevaPublicacion() {
         <form onSubmit={handleSubmit} className="nueva-publicacion-form">
           <div className="form-user-info">
             <div className="form-avatar">
-              <img 
-                src={`https://picsum.dev/static/42/64/64`} 
-                alt="Tu avatar" 
+              <img
+                src={mockUser.avatar}
+                alt="Tu avatar"
               />
             </div>
-            <div className="form-user-name">Usuario Actual</div>
+            <div className="form-user-name">{mockUser.username}</div>
           </div>
 
           <div className="form-content-area">
@@ -108,7 +109,7 @@ export default function NuevaPublicacion() {
               <p className="map-picker-instruction">
                 Haz clic en el mapa para seleccionar la ubicación exacta
               </p>
-              <MapaPicker 
+              <MapaPicker
                 selectedLocation={selectedLocation}
                 onLocationSelect={handleLocationSelect}
               />
@@ -118,15 +119,15 @@ export default function NuevaPublicacion() {
                 </div>
               )}
               <div className="map-picker-actions">
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="cancel-map-btn"
                   onClick={handleCancelLocation}
                 >
                   Cancelar
                 </button>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="confirm-map-btn"
                   onClick={handleConfirmLocation}
                   disabled={!selectedLocation}
@@ -144,8 +145,8 @@ export default function NuevaPublicacion() {
                 <span className="location-text">
                   Ubicación agregada: {selectedLocation[0].toFixed(4)}, {selectedLocation[1].toFixed(4)}
                 </span>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="remove-location-btn"
                   onClick={handleRemoveLocation}
                 >
@@ -157,8 +158,8 @@ export default function NuevaPublicacion() {
 
           <div className="form-actions">
             <div className="additional-options">
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="option-button"
                 onClick={handleAddLocation}
                 disabled={hasLocation || showMapPicker}
@@ -170,8 +171,8 @@ export default function NuevaPublicacion() {
               </button>
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="submit-button"
               disabled={content.trim().length === 0}
             >
@@ -190,8 +191,8 @@ export default function NuevaPublicacion() {
         </div>
 
         <div className="danger-zone">
-          <button 
-            type="button" 
+          <button
+            type="button"
             className="delete-all-button"
             onClick={handleDeleteAllPosts}
           >

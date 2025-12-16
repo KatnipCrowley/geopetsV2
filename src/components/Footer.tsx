@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { HomeIcon, MapIcon, PlusCircleIcon, BellIcon } from "@heroicons/react/24/outline";
 import "./Footer.css";
+import { mockUser } from "../mockup";
 
 export default function FooterButtons() {
   const location = useLocation();
@@ -51,7 +52,7 @@ export default function FooterButtons() {
       {/* Perfil */}
       <Link to="/perfil" className={`footer-nav-button ${isActive('/perfil') ? 'active' : ''}`}>
         <img
-          src="https://picsum.dev/64?seed=3"
+          src={mockUser.avatar}
           alt="Perfil"
           className={`footer-profile-img ${isActive('/perfil') ? 'active' : ''}`}
         />

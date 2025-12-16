@@ -1,17 +1,13 @@
-interface NotificacionOptions {
-  type: 'follower' | 'alert' | 'comment';
-  name: string;
-  date: string;
-  text: string;
-  avatar?: string;
-  readed?: boolean;
-  commentText?: string;
-  imageUrl?: string;
-}
-
+import { useNavigate } from 'react-router-dom';
+import type { NotificacionData } from '../mockup';
 import './Notificacion.css';
 
-export default function Notificacion({ type, name, date, text, avatar, readed, commentText, imageUrl }: NotificacionOptions) {
+export default function Notificacion({ type, name, date, text, avatar, readed, commentText, imageUrl }: NotificacionData) {
+  const navigate = useNavigate();
+
+  const handleChatClick = () => {
+    navigate('/chat');
+  };
 
   const renderActionButton = () => {
     switch (type) {
@@ -36,6 +32,12 @@ export default function Notificacion({ type, name, date, text, avatar, readed, c
               <div className="notif-image-placeholder">📷</div>
             )}
           </div>
+        );
+      case 'chat':
+        return (
+          <button className="notif-action-btn action-btn-view" onClick={handleChatClick}>
+            Mensaje
+          </button>
         );
       default:
         return null;
